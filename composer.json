@@ -1,34 +1,28 @@
-
 {
-	"name": "uestla/yetorm",
-	"type": "library",
-	"description": "Lightweight ORM for Nette\\Database",
-	"keywords": ["nette", "orm", "database"],
-	"homepage": "https://github.com/uestla/YetORM",
-	"license": "MIT",
-	"support": {
-		"issues": "https://github.com/uestla/YetORM/issues"
-	},
+    "name": "solarismedia/yetorm",
+    "type": "library",
+    "description": "Lightweight ORM for Nette\\Database",
+    "keywords": [
 
-	"require": {
-		"php": ">=5.6.0",
-		"nette/utils": "^2.4",
-		"nette/database": "^2.4",
-		"nette/reflection": "^2.3"
-	},
-
-	"require-dev": {
-		"tracy/tracy": "^2.4",
-		"nette/tester": "^2.0",
-		"nette/caching": "^2.5",
-		"nette/robot-loader": "^2.4"
-	},
-
-	"autoload": {
-		"classmap": ["src/"]
-	},
-
-	"scripts": {
-		"test": "tester tests/ -C"
-	}
+    ],
+    "license": "MIT",
+    "support": {
+    },
+    "require": {
+        "php": ">=8.0"
+    },
+    "require-dev": {
+        "tracy/tracy": "^2.4",
+        "nette/tester": "^2.0",
+        "nette/caching": "^2.5",
+        "nette/robot-loader": "^2.4"
+    },
+    "autoload": {
+        "classmap": [
+            "src/"
+        ]
+    },
+    "scripts": {
+        "test": "tester tests/ -C"
+    }
 }
