@@ -58,7 +58,7 @@ class EntityCollection implements \Iterator, \Countable
 
 		try {
 			NCallback::check($entity);
-			$this->entity = NCallback::closure($entity);
+			$this->entity = \Closure::fromCallable($entity);
 
 		} catch (\Exception $e) {
 			$this->entity = $entity;
@@ -83,7 +83,8 @@ class EntityCollection implements \Iterator, \Countable
 			$this->data = [];
 			foreach ($this->selection as $row) {
 				$record = $this->refTable === NULL ? $row : $row->ref($this->refTable, $this->refColumn);
-				$this->data[] = NCallback::invoke($factory, $record);
+//				$this->data[] = Nette\Utils\Callback::invoke($factory, $record);
+				$this->data[] = $factory($record);
 			}
 		}
 	}
@@ -152,7 +153,7 @@ class EntityCollection implements \Iterator, \Countable
 	// === \Iterator INTERFACE ======================================
 
 	/** @return void */
-	public function rewind()
+	public function rewind():void
 	{
 		$this->loadData();
 		$this->keys = array_keys($this->data);
@@ -161,7 +162,7 @@ class EntityCollection implements \Iterator, \Countable
 
 
 	/** @return Entity */
-	public function current()
+	public function current(): mixed
 	{
 		$key = current($this->keys);
 		return $key === FALSE ? FALSE : $this->data[$key];
@@ -169,21 +170,21 @@ class EntityCollection implements \Iterator, \Countable
 
 
 	/** @return mixed */
-	public function key()
+	public function key(): mixed
 	{
 		return current($this->keys);
 	}
 
 
 	/** @return void */
-	public function next()
+	public function next(): void
 	{
 		next($this->keys);
 	}
 
 
 	/** @return bool */
-	public function valid()
+	public function valid(): bool
 	{
 		return current($this->keys) !== FALSE;
 	}
@@ -195,7 +196,7 @@ class EntityCollection implements \Iterator, \Countable
 	 * @param  string $column
 	 * @return int
 	 */
-	public function count($column = NULL)
+	public function count($column = NULL): int
 	{
 		if ($column !== NULL) {
 			return $this->selection->count($column);

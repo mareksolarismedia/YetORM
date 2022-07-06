@@ -106,7 +106,7 @@ abstract class Repository
 	protected function createEntityFromSelection(NSelection $selection)
 	{
 		$row = $selection->fetch();
-		return $row === FALSE ? NULL : $this->createEntity($row);
+		return !$row ? NULL : $this->createEntity($row);
 	}
 
 
